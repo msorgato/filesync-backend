@@ -3,6 +3,7 @@ package com.maniargh.utils.backup.service;
 import com.maniargh.exception.InvalidArgumentException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,27 +12,10 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-public class FileSyncManager {
+@Service
+public class FileSyncService {
     public static final String FS_SEPARATOR = System.getProperty("file.separator");
     private static final Logger LOG = Logger.getLogger("file-sync");
-
-    private static FileSyncManager INSTANCE;
-
-    private FileSyncManager() {
-    }
-
-    /**
-     * Singleton instance getter
-     *
-     * @return
-     */
-    public static FileSyncManager getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new FileSyncManager();
-        }
-
-        return INSTANCE;
-    }
 
     /**
      * Copies all files contained inside a directory, creating direct subdirectory if needed
@@ -97,6 +81,5 @@ public class FileSyncManager {
             }
         }
     }
-
 
 }
